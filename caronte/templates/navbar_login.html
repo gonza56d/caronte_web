@@ -1,9 +1,10 @@
 {% load i18n %}
 
 <form class="navbar-nav" method="POST" action="" enctype="application/x-www-form-urlencoded">
+    <div class="row">
     {% csrf_token %}
     {% for field in request.login_form %}
-        <div class="col-12 col-md-4 my-1 my-md-0 mx-1">
+        <div class="col-12 col-md-5 my-1 my-md-0">
             <div class="input-group">
                 <div class="input-group-text">
                     <i class="{{ field.field.icon }} mx-auto"></i>
@@ -12,11 +13,8 @@
             </div>
         </div>
     {% endfor %}
-    <div class="col-12 col-md-2 my-1 my-md-0 mx-1 d-grid">
+    <div class="col-12 col-md-2 my-1 my-md-0 d-grid">
         <button type="submit" class="btn btn-outline-light">{% translate 'Login' %}</button>
     </div>
-
-    <div class="col-12 col-md-2 my-1 my-md-0 mx-1 d-grid">
-        <a href="#" class="btn btn-outline-light">{% translate 'Signup' %}</a>
-    </div>
+        </div>
 </form>

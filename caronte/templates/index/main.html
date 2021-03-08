@@ -12,9 +12,7 @@
             <div class="card-body">
                 <h5 class="card-title">{% translate 'What is Caronte?' %}</h5>
                 <div class="card-text">
-                    <strong>Caronte</strong> es una aplicación para la gestión de gastos durante un período de tiempo determinado.<br>
-                    Para su uso, se comienza indicando el inicio de un nuevo _Período_, en donde determinamos de cuánto dinero disponemos durante el mismo y la fecha en la cual este finaliza (comienza el mismo día de su creación). Solo se puede tener un Período activo a la vez.<br>
-                    Una vez creado el Período, el sistema calcula cuál es el gasto máximo promedio diario con el presupuesto y la fecha límite indicados. <br>
+                    {% autoescape off %}{{ CARONTE_INDEX_DESCRIPTION }}{% endautoescape %}
                 </div>
             </div>
         </div>
