@@ -25,7 +25,8 @@
             <div class="card-body">
                 <h5 class="card-title">{% translate 'Sign up your account now!' %}</h5>
                 <div class="card-text">
-                    <div class="row">
+                    <form class="row" action="{% url 'users:signup' %}" method="POST" enctype="application/x-www-form-urlencoded">
+                        {% csrf_token %}
                         {% for field in signup_form %}
                             <div class="col-12 my-1 mx-1">
                                 <div class="input-group">
@@ -38,10 +39,10 @@
                         {% endfor %}
                         <div class="col-12 my-1 mx-1">
                             <div class="d-grid">
-                                <a href="#" class="btn btn-dark">{% translate 'Submit' %}</a>
+                                <button class="btn btn-dark">{% translate 'Submit' %}</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

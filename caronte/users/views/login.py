@@ -9,6 +9,7 @@ from caronte.users.forms import LoginForm
 
 
 class LoginView(View):
+    """Class that receives users' login request."""
 
     form_class = LoginForm
 

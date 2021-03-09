@@ -2,10 +2,15 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 # Project
+from caronte.users.models import User
 from caronte.utils.forms import IconCharField, IconEmailField, IconPasswordField
 
 
-class SignupForm(forms.Form):
+class SignupForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'password']
 
     def __init__(self, *args, **kwargs):
 
@@ -37,6 +42,6 @@ class SignupForm(forms.Form):
         )
 
         self.fields['re_password'] = IconPasswordField(
-            placeholder=_('Password'),
+            placeholder=_('Password again'),
             icon='fas fa-key'
         )

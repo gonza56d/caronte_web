@@ -9,7 +9,7 @@ class IconCharField(forms.CharField):
                  min_length=None, strip=True, empty_value='', **kwargs):
         super().__init__(**kwargs)
         self.icon = icon
-        self.widget=forms.TextInput(attrs={'class': 'form-control'})
+        self.widget = forms.TextInput(attrs={'class': 'form-control'})
         if placeholder is not None:
             self.widget.attrs['placeholder'] = placeholder
 
@@ -20,7 +20,7 @@ class IconEmailField(forms.EmailField):
     def __init__(self, icon='', placeholder=None, **kwargs):
         super().__init__(**kwargs)
         self.icon = icon
-        self.widget=forms.EmailInput(attrs={'class': 'form-control'})
+        self.widget = forms.EmailInput(attrs={'class': 'form-control'})
         if placeholder is not None:
             self.widget.attrs['placeholder'] = placeholder
 
@@ -32,6 +32,6 @@ class IconPasswordField(forms.CharField):
                  min_length=None, strip=True, empty_value='', **kwargs):
         super().__init__(**kwargs)
         self.icon = icon
-        self.widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        self.widget = forms.PasswordInput(attrs={'class': 'form-control'})
         if placeholder is not None:
             self.widget.attrs['placeholder'] = placeholder
