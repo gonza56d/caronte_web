@@ -25,19 +25,23 @@
             <div class="card-body">
                 <h5 class="card-title">{% translate 'Sign up your account now!' %}</h5>
                 <div class="card-text">
-                    {% for field in signup_form %}
-                        <div class="col-12 my-1 mx-1">
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="{{ field.field.icon }} mx-auto"></i>
+                    <div class="row">
+                        {% for field in signup_form %}
+                            <div class="col-12 my-1 mx-1">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                        <i class="{{ field.field.icon }} mx-auto"></i>
+                                    </div>
+                                    {{ field }}
                                 </div>
-                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <div class="col-12 my-1 mx-1">
+                            <div class="d-grid">
+                                <a href="#" class="btn btn-dark">{% translate 'Submit' %}</a>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
-                <div class="d-grid">
-                    <a href="#" class="btn btn-dark">{% translate 'Submit' %}</a>
+                    </div>
                 </div>
             </div>
         </div>
