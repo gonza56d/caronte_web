@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form class="navbar-nav" method="POST" action="" enctype="application/x-www-form-urlencoded">
+<form class="navbar-nav" method="POST" action="{% url 'users:login' %}" enctype="application/x-www-form-urlencoded">
     <div class="row">
     {% csrf_token %}
         {% for field in request.login_form %}
