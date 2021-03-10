@@ -12,7 +12,7 @@ class PeriodManager(models.Manager):
 
     def current(self, user, **kwargs):
         now = datetime.now()
-        return self.filter(user=user, created__gte=now, date_to__lt=now, **kwargs)
+        return self.filter(user=user, created__lte=now, date_to__gt=now, **kwargs)
 
 
 class Period(BaseModel):
