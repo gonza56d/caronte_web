@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                {% translate 'Period' %}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{% translate 'Start a new Period' %}</h5>
+                <div class="card-text">
+                    <form class="row" action="{% url 'periods:create' %}" method="POST" enctype="application/x-www-form-urlencoded">
+                        {% csrf_token %}
+                        {% for field in period_form %}
+                            <div class="col-12 my-1 mx-1">
+                                <div class="input-group">
+                                    <div class="input-group-text">
+                                        <i class="{{ field.field.icon }} mx-auto"></i>
+                                    </div>
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="col-12 my-1 mx-1">
+                            <div class="d-grid my-1">
+                                <button class="btn btn-dark">{% translate 'Submit' %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
