@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('caronte.index.urls', 'index'), namespace='index')),
     path('users/', include(('caronte.users.urls', 'users'), namespace='users')),
+    path('periods/', include(('caronte.periods.urls', 'periods'), namespace='periods')),
 ]

@@ -8,6 +8,7 @@ from django.views import View
 # Project
 from caronte.users import services
 from caronte.users.forms import SignupForm
+from caronte.utils.genericfunctions import form_errors_into_string
 
 
 class SignupView(View):
@@ -30,10 +31,6 @@ class SignupView(View):
             else:
                 messages.error(request, _('Something went wrong, please try again'))
         else:
-            errors = ''
-            for error in form.errors:
-                if errors:
-                    errors = errors + ', '
-                errors = errors + form.errors[error][0].lower()
+            errors = form_errors_into_string(form.errors)
             messages.warning(request, errors)
         return redirect('index:main')

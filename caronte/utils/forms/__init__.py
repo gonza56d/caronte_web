@@ -1,1 +1,1 @@
-from .icon_fields import IconCharField, IconEmailField, IconPasswordField
+from .icon_fields import IconCharField, IconEmailField, IconPasswordField, IconDecimalField, IconDateField

@@ -3,9 +3,9 @@
 # Django
 from django.urls import path
 # Project
-from .views import main
+from .views import MainView
 
 
 urlpatterns = [
-    path('', main, name='main'),
+    path('', MainView.as_view(), name='main'),
 ]
