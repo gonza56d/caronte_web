@@ -1,7 +1,7 @@
 """Users business logic module."""
 
 # Django
-from django.contrib.auth import authenticate
+from django.contrib import auth
 # Project
 from .models import User
 
@@ -19,10 +19,17 @@ def signup(username, email, password, first_name, last_name):
     return user
 
 
-def login(username, password):
+def login(request, username, password):
     """Handle user login business logic."""
 
     if username:
         username = username.lower()
 
-    return authenticate(username=username, password=password)
+    user = auth.authenticate(username=username, password=password)
+    if user is not None:
+        auth.login(request, user)
+    return user
+
+
+def logout(request):
+    auth.logout(request)
