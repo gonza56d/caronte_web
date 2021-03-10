@@ -20,8 +20,8 @@ class PeriodForm(forms.ModelForm):
     def __init__(self, user=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = user
-        self.fields['date_to'] = IconDateField(icon='fas fa-calendar-alt')
-        self.fields['budget'] = IconDecimalField(icon='fas fa-dollar-sign')
+        self.fields['date_to'] = IconDateField(icon='fas fa-calendar-alt', placeholder=_('Finish date'))
+        self.fields['budget'] = IconDecimalField(icon='fas fa-dollar-sign', placeholder=_('Budget'))
 
     def clean(self):
         cleaned_data = super().clean()
