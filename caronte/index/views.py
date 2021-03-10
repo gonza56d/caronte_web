@@ -21,7 +21,7 @@ class MainView(View):
 
     def get(self, request):
         if request.user.is_authenticated:
-            self.period = Period.objects.current(user=request.user).prefetch_related('dailies')
+            self.period = Period.objects.current(user=request.user).select_related('dailies')
         return render(request, 'index/main.html', {
             'signup_form': SignupForm(),
             'period_form': PeriodForm(),
