@@ -1,0 +1,30 @@
+{% load i18n %}
+
+<h5 class="card-title">{% translate "Today's expenses" %}</h5>
+<div class="card-text">
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">{% translate 'Time' %}</th>
+                <th scope="col">{% translate 'Description' %}</th>
+                <th scope="col">{% translate 'Amount' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in details %}
+            <tr>
+                <th scope="row">{{ detail.created }}</th>
+                <td>{{ detail.title }}</td>
+                <td>{{ detail.expense }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>{% translate 'Total spending' %}: <br>${{ daily.today_expense }}</td>
+                <td>{% translate 'Remainder' %}: <br>${{ daily.today_remainder }}</td>
+                <td>{% translate 'Balance' %}: <br>${{ period.balance }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

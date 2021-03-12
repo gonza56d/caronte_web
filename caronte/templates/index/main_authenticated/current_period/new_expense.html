@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<h5 class="card-title">{% translate 'New expense' %}</h5>
+<div class="card-text">
+    <form action="{% url 'details:create' %}" method="POST" enctype="application/x-www-form-urlencoded">
+        {% csrf_token %}
+        {% for field in detail_form %}
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-4 my-1 mx-1">
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <i class="{{ field.field.icon }} mx-auto"></i>
+                        </div>
+                        {{ field }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-4 md-lg-4 my-1 mx-1">
+                <div class="d-grid">
+                    <button class="btn btn-dark">{% translate 'Submit' %}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
