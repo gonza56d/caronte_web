@@ -5,63 +5,10 @@
         {{ today }}
     </div>
     <div class="card-body">
-        <h5 class="card-title">{% translate 'New expense' %}</h5>
-        <div class="card-text">
-            <form action="" method="POST" enctype="application/x-www-form-urlencoded">
-                {% csrf_token %}
-                {% for field in detail_form %}
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-lg-4 my-1 mx-1">
-                            <div class="input-group">
-                                <div class="input-group-text">
-                                    <i class="{{ field.field.icon }} mx-auto"></i>
-                                </div>
-                                {{ field }}
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-                <div class="row justify-content-center">
-                    <div class="col-12 col-lg-4 md-lg-4 my-1 mx-1">
-                        <div class="d-grid">
-                            <button class="btn btn-dark">{% translate 'Submit' %}</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+        {% include 'index/main_authenticated/current_period/new_expense.html' %}
         <hr>
-        <h5 class="card-title">{% translate 'Previous daily summaries' %}</h5>
-        <div class="card-text">
-            <table class="table table-dark table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        {% include 'index/main_authenticated/current_period/today_expenses.html' %}
+        <hr>
+        {% include 'index/main_authenticated/current_period/previous_daily_summaries.html' %}
     </div>
 </div>

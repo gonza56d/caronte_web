@@ -16,4 +16,4 @@ class DetailForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['title'] = IconCharField(icon='fas fa-pen', placeholder=_('Description'))
-        self.fields['expense'] = IconDecimalField(icon='fas fa-dollar-sign', placeholder=_('Expense'))
+        self.fields['expense'] = IconDecimalField(icon='fas fa-dollar-sign', placeholder=_('Amount'))

@@ -18,7 +18,7 @@ class CreatePeriodView(View):
         if form.is_valid():
             period = services.create(
                 user=request.user,
-                date_to=form.cleaned_data.get('date_to'),
+                finish_date=form.cleaned_data.get('finish_date'),
                 budget=form.cleaned_data.get('budget')
             )
             if period:

@@ -8,6 +8,7 @@ from django.views import View
 # Project
 from caronte.dailies.models import Daily
 from caronte.details.forms import DetailForm
+from caronte.details.models import Detail
 from caronte.periods.forms import PeriodForm
 from caronte.periods.models import Period
 from caronte.users.forms import SignupForm
@@ -18,15 +19,19 @@ class MainView(View):
 
     period = None
     dailies = None
+    details = None
 
     def get(self, request):
         if request.user.is_authenticated:
-            self.period = Period.objects.current(user=request.user).select_related('dailies')
+            self.period = Period.objects.current(user=request.user)
+            if self.period is not None:
+                self.details = Detail.objects.from_today(period=self.period)
         return render(request, 'index/main.html', {
             'signup_form': SignupForm(),
             'period_form': PeriodForm(),
             'detail_form': DetailForm(),
             'CARONTE_INDEX_DESCRIPTION': CARONTE_INDEX_DESCRIPTION,
             'period': self.period,
+            'details': self.details,
             'today': datetime.date.today(),
         })

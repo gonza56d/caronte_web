@@ -15,18 +15,18 @@ class PeriodForm(forms.ModelForm):
 
     class Meta:
         model = Period
-        fields = ['date_to', 'budget']
+        fields = ['finish_date', 'budget']
 
     def __init__(self, user=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = user
-        self.fields['date_to'] = IconDateField(icon='fas fa-calendar-alt', placeholder=_('Finish date'))
+        self.fields['finish_date'] = IconDateField(icon='fas fa-calendar-alt', placeholder=_('Finish date'))
         self.fields['budget'] = IconDecimalField(icon='fas fa-dollar-sign', placeholder=_('Budget'))
 
     def clean(self):
         cleaned_data = super().clean()
         now = datetime.now()
-        split_date = cleaned_data.get('date_to').split('-')
+        split_date = cleaned_data.get('finish_date').split('-')
         existing_period = Period.objects.current(user=self.user)
         if existing_period:
             raise ValidationError(_('You already have an active Period'))
