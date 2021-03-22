@@ -13,9 +13,9 @@
         <tbody>
             {% for detail in details %}
             <tr>
-                <th scope="row">{{ detail.created }}</th>
+                <th scope="row">{{ detail.created|time }}</th>
                 <td>{{ detail.title }}</td>
-                <td>{{ detail.expense }}</td>
+                <td class="text-end px-md-3 px-1">$ {{ detail.expense }}</td>
             </tr>
             {% endfor %}
         </tbody>

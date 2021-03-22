@@ -33,3 +33,6 @@ class Detail(BaseModel):
     expense = models.DecimalField(max_digits=9, decimal_places=2)
 
     objects = DetailManager()
+
+    class Meta(BaseModel.Meta):
+        ordering = ['created']
