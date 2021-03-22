@@ -56,6 +56,6 @@ class IconDecimalField(forms.CharField):
                  min_length=None, strip=True, empty_value='', **kwargs):
         super().__init__(**kwargs)
         self.icon = icon
-        self.widget = forms.NumberInput(attrs={'class': 'form-control', 'step': '0.1'})
+        self.widget = forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'})
         if placeholder is not None:
             self.widget.attrs['placeholder'] = placeholder
