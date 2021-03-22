@@ -7,7 +7,7 @@ from .models import User
 
 
 def signup(username, email, password, first_name, last_name):
-    """Handle user signup business logic."""
+    """Handle user signup logic."""
 
     user = User.objects.create_user(
         username=username,
