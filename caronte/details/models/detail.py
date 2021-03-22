@@ -15,10 +15,11 @@ class DetailManager(models.Manager):
         today = timezone.now()
         try:
             daily = Daily.objects.get_or_create(period=period, date=today, defaults={
+                'period': period,
                 'expense': 0,
                 'remainder': period.daily_budget
             })
-            return self.filter(daily=daily)  # TODO
+            return self.filter(daily=daily[0])
         except Daily.DoesNotExist:
             return self.none()
 
