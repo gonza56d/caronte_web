@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for detail in details %}
+            {% for detail in daily.details %}
             <tr>
                 <th scope="row">{{ detail.created|time }}</th>
                 <td>{{ detail.title }}</td>

@@ -2,8 +2,27 @@
 
 # Django
 from django.db import models
+from django.utils import timezone
 # Project
+from caronte.details.models import Detail
+from caronte.periods.models import Period
 from caronte.utils.models import BaseModel
+
+
+class DailyManager(models.Manager):
+
+    def from_today(self, period: Period, **kwargs):
+        today = timezone.now()
+        try:
+            daily = Daily.objects.get_or_create(period=period, date=today, defaults={
+                'period': period,
+                'expense': 0,
+                'remainder': period.daily_budget
+            })[0]
+            daily.details = Detail.objects.filter(daily=daily)
+            return daily
+        except Daily.DoesNotExist:
+            return self.none()
 
 
 class Daily(BaseModel):
@@ -18,12 +37,12 @@ class Daily(BaseModel):
 
     remainder = models.DecimalField(max_digits=9, decimal_places=2)
 
+    objects = DailyManager()
+
     @property
     def today_expense(self):
-        from caronte.details.models import Detail
-        details = Detail.objects.filter(daily=self)
         __expense = 0
-        for detail in details:
+        for detail in self.details:
             __expense += detail.expense
         return __expense
 
