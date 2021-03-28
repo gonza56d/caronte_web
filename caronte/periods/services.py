@@ -54,8 +54,7 @@ def refresh(period: Period) -> Period:
     dailies = get_dailies_creating_missings(period)
     balance = 0
     for daily in dailies:
-        if daily.date != timezone.now().date():
-            balance += period.daily_budget - daily.expense
+        balance += period.daily_budget - daily.expense
     period.balance = balance
     period.save()
     return period

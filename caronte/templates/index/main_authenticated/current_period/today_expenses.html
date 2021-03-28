@@ -26,13 +26,13 @@
                     <strong>{% translate 'Total spending' %}: $ {{ daily.today_expense|floatformat:2 }}</strong>
                 </td>
                 <td class="
-                {% if period.balance < 0.00 %}
+                {% if daily.today_remainder < 0.00 %}
                     {% if request.session.theme.lower == 'dark' %}
                         text-red-strong
                     {% else %}
                         text-red
                     {% endif %}
-                {% elif period.balance > 0.01 %}
+                {% elif daily.today_remainder > 0.01 %}
                     {% if request.session.theme.lower == 'dark' %}
                         text-green-strong
                     {% else %}

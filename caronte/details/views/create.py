@@ -27,10 +27,8 @@ class CreateDetailView(View):
             errors = form_errors_into_string(form.errors)
             messages.warning(request, errors)
         else:
-            period = Period.objects.current(user=request.user)
-            today = timezone.now()
             detail = services.create(
-                daily=Daily.objects.get(period=period, date=today),
+                user=request.user,
                 title=form.cleaned_data.get('title'),
                 expense=form.cleaned_data.get('expense')
             )
