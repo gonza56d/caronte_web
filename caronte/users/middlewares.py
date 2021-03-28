@@ -40,7 +40,7 @@ class SetUpThemeMiddleware:
 
 		# First, try to set the chosen theme either from authenticated user's attribute or from anonymous' session variable.
 		if request.user.is_authenticated:
-			theme = request.user.theme.name
+			theme = User.Theme(request.user.theme).name
 		else:
 			try:
 				theme = request.session['theme_option']
