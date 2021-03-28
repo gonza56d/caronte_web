@@ -17,7 +17,7 @@
                 <td scope="row">{{ daily.date|date }}</td>
                 <td>$ {{ daily.expense|floatformat:2 }}</td>
                 <td>$ {{ daily.remainder|floatformat:2 }}</td>
-                <td>@mdo</td>
+                <td>$ {{ daily.balance|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </tbody>

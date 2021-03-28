@@ -23,7 +23,7 @@
         <tfoot>
             <tr>
                 <td>
-                    <strong>{% translate 'Total spending' %}: $ {{ daily.today_expense|floatformat:2 }}</strong>
+                    <strong>{% translate 'Total spending' %}: $ {{ daily.expense|floatformat:2 }}</strong>
                 </td>
                 <td class="
                 {% if daily.today_remainder < 0.00 %}

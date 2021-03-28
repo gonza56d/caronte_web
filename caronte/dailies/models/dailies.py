@@ -48,15 +48,10 @@ class Daily(BaseModel):
 
     remainder = models.DecimalField(max_digits=9, decimal_places=2)
 
+    balance = models.DecimalField(max_digits=9, decimal_places=2, null=False, blank=True, default=0)
+
     objects = DailyManager()
 
     @property
-    def today_expense(self):
-        __expense = 0
-        for detail in self.details:
-            __expense += detail.expense
-        return __expense
-
-    @property
     def today_remainder(self):
-        return self.period.daily_budget - self.today_expense
+        return self.period.daily_budget - self.expense

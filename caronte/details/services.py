@@ -26,7 +26,9 @@ def create(user: User, title: str, expense: DecimalField) -> Detail:
         )
 
         daily.expense = float(daily.expense) + float(expense)
-        daily.save()
 
         periods_services.refresh(period=period)
+
+        daily.balance = period.balance
+        daily.save()
     return detail
