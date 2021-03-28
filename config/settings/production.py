@@ -5,7 +5,7 @@ from .base import *
 
 DEBUG = False
 
-# ALLOWED_HOSTS = ['gonza56d.pythonanywhere.com', 'localhost', '127.0.0.1', 'http://localhost:5500']
+ALLOWED_HOSTS = ['caronte.pythonanywhere.com', 'localhost', '127.0.0.1', 'http://localhost:5500']
 
 # CORS_ALLOWED_ORIGINS = ['http://localhost:5500']
 

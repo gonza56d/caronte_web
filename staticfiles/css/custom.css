@@ -1,0 +1,42 @@
+.alert-error {
+    color:#842029;
+    background-color:#f8d7da;
+    border-color:#f5c2c7
+}
+
+.alert-error .alert-link {
+    color:#6a1a21
+}
+
+.text-green {
+    color: #008c00;
+}
+
+.text-red {
+    color: #e20000;
+}
+
+.text-green-strong {
+    color: #01ff01;
+}
+
+.text-red-strong {
+    color: #ff0101;
+}
+
+.theme-dark {
+    background-color: black;
+}
+
+.card.theme-dark {
+    background-color: #343540;
+    color: white;
+}
+
+.form-control:focus{
+    color: #212529;
+    background-color: #fff;
+    border-color: green;
+    outline:0;
+    box-shadow:0 0 0 .25rem rgba(86, 209, 0, .25)
+}
