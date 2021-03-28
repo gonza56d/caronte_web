@@ -12,11 +12,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for daily in dailies %}
+            {% for daily in period.dailies %}
             <tr>
-                <th scope="row">{{ daily.created }}</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <th scope="row">{{ daily.date|date }}</th>
+                <td>$ {{ daily.expense|floatformat:2 }}</td>
+                <td>$ {{ daily.remainder|floatformat:2 }}</td>
                 <td>@mdo</td>
             </tr>
             {% endfor %}

@@ -16,15 +16,15 @@
             <tr>
                 <th scope="row">{{ detail.created|time }}</th>
                 <td>{{ detail.title }}</td>
-                <td class="text-end px-md-3 px-1">$ {{ detail.expense }}</td>
+                <td class="text-end px-md-3 px-1">$ {{ detail.expense|floatformat:2 }}</td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <td>{% translate 'Total spending' %}: <br>${{ daily.today_expense }}</td>
-                <td>{% translate 'Remainder' %}: <br>${{ daily.today_remainder }}</td>
-                <td>{% translate 'Balance' %}: <br>${{ period.balance }}</td>
+                <td>{% translate 'Total spending' %}: <br>${{ daily.today_expense|floatformat:2 }}</td>
+                <td>{% translate 'Remainder' %}: <br>${{ daily.today_remainder|floatformat:2 }}</td>
+                <td>{% translate 'Balance' %}: <br>${{ period.balance|floatformat:2 }}</td>
             </tr>
         </tfoot>
     </table>

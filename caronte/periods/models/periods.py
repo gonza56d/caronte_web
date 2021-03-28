@@ -12,9 +12,12 @@ from caronte.utils.models import BaseModel
 class PeriodManager(models.Manager):
 
     def current(self, user, **kwargs):
-        now = timezone.now()
+        now = timezone.now().date()
         try:
-            return self.get(user=user, date__lte=now, finish_date__gte=now, **kwargs)
+            from caronte.dailies.models import Daily
+            period = self.get(user=user, date__lte=now, finish_date__gte=now, **kwargs)
+            period.dailies = Daily.objects.filter(period=period, date__lt=now)
+            return period
         except Period.DoesNotExist:
             return None
 
