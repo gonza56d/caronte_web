@@ -1,5 +1,11 @@
+# Python
+from datetime import date, timedelta
+# Django
+from django.utils.translation import gettext as _
+from django.utils import timezone
 # Project
 from caronte.periods.models import Period
+from caronte.utils.genericfunctions import days_until_today
 
 
 def create(user, finish_date, budget):
@@ -12,17 +18,44 @@ def create(user, finish_date, budget):
     )
 
 
+def get_dailies_creating_missings(period: Period):
+    """
+    Fetch all the dailies from Period and create Dailies which are missing until today. This prevents missing dailies
+    when User doesn't connect to the app for one or more days.
+    """
+    from caronte.dailies.models import Daily
+
+    dailies = Daily.objects.filter(period=period)
+
+    dailies_quantity = dailies.count()
+    expected_dailies_quantity = days_until_today(start_date=period.date)
+    missing_dailies = expected_dailies_quantity - dailies_quantity
+
+    for n in range(missing_dailies):
+        daily_date = dailies.last().date - timedelta(days=n+1)
+        Daily.objects.create(
+            period=period,
+            notes=_('Inactive day'),
+            date=daily_date,
+            expense=0,
+            remainder=period.daily_budget
+        )
+    if missing_dailies > 0:
+        dailies = Daily.objects.filter(period=period)
+    return dailies
+
+
 def refresh(period: Period) -> Period:
     """
     Get all the Dailies from the Period and calculate the current balance, then update the Period.
     :param period: Period to update the balance.
     :return: Period with updated balance.
     """
-    from caronte.dailies.models import Daily
-    dailies = Daily.objects.filter(period=period)
+    dailies = get_dailies_creating_missings(period)
     balance = 0
     for daily in dailies:
-        balance += period.daily_budget - daily.expense
+        if daily.date != timezone.now().date():
+            balance += period.daily_budget - daily.expense
     period.balance = balance
     period.save()
     return period

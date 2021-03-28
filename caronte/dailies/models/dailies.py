@@ -23,7 +23,7 @@ class DailyManager(models.Manager):
         :param period: User's Period to search today's Daily.
         :return: Today's Daily with its current Details list.
         """
-        today = timezone.now()
+        today = timezone.now().date()
         get_or_create = Daily.objects.get_or_create(period=period, date=today, defaults={
             'period': period,
             'expense': 0,
@@ -42,7 +42,7 @@ class Daily(BaseModel):
 
     notes = models.CharField(max_length=1000, blank=True, null=True)
 
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField()
 
     expense = models.DecimalField(max_digits=9, decimal_places=2)
 
