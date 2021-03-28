@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="card theme-{{ request.theme.name.lower }}">
+<div class="card theme-{{ request.session.theme.lower }}">
     <div class="card-header">
         {{ today }}
     </div>

@@ -28,17 +28,33 @@ class SetUpThemeMiddleware:
 		self.get_response = get_response
 
 	def __call__(self, request):
-		theme = User.Theme.AUTO
-		if request.user.is_authenticated:
-			theme = request.user.theme
+		"""
+		Request's "theme_option" is the chosen theme in session, while request's "theme" is the assigned theme by
+		the middleware logic. We must store them separately since, for instance, the theme_option could be "AUTO", then
+		the middleware logic will set the theme to LIGHT or DARK depending on server time, hence the user would lose the
+		"AUTO" option being replaced by LIGHT/DARK if we'd stored them in the same session variable.
+		"""
 
-		if theme == User.Theme.AUTO:
-			# When theme is set to AUTO, set to LIGHT between 7am and 7pm, and DARK between 7pm and 7am.
+		# Must be called after view was processed, so that theme change can be applied before the middleware
+		response = self.get_response(request)
+
+		# First, try to set the chosen theme either from authenticated user's attribute or from anonymous' session variable.
+		if request.user.is_authenticated:
+			theme = request.user.theme.name
+		else:
+			try:
+				theme = request.session['theme_option']
+			except KeyError:  # Set to AUTO by default.
+				theme = User.Theme.AUTO.name
+				request.session['theme_option'] = User.Theme.AUTO.name
+
+		if not theme or theme == User.Theme.AUTO.name:
+			# When theme_option is set to AUTO, set theme to LIGHT between 7am and 7pm, and DARK between 7pm and 7am.
 			now = timezone.now()
 			if now.replace(hour=19) > now >= now.replace(hour=7):
-				theme = User.Theme.LIGHT
+				theme = User.Theme.LIGHT.name
 			else:
-				theme = User.Theme.DARK
+				theme = User.Theme.DARK.name
 
-		request.theme = theme
-		return self.get_response(request)
+		request.session['theme'] = theme
+		return response

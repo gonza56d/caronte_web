@@ -24,7 +24,7 @@ class PeriodForm(forms.ModelForm):
         self.fields['budget'] = IconDecimalField(icon='fas fa-dollar-sign', placeholder=_('Budget'))
 
     def clean(self):
-        cleaned_data = super().clean()
+        cleaned_data = super()
         now = datetime.now()
         split_date = cleaned_data.get('finish_date').split('-')
         existing_period = Period.objects.current(user=self.user)
@@ -33,7 +33,7 @@ class PeriodForm(forms.ModelForm):
         errors = ''
         if datetime(int(split_date[0]), int(split_date[1]), int(split_date[2])) <= now:
             errors += _('Period finish date must be after today')
-        if float(cleaned_data.get('budget')) < 30:
+        if float(get('budget')) < 30:
             if errors:
                 errors += ', '
             errors += _('Budget cannot be less than $30')
