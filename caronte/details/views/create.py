@@ -30,7 +30,7 @@ class CreateDetailView(View):
             period = Period.objects.current(user=request.user)
             today = timezone.now()
             detail = services.create(
-                daily=get(period=period, date=today),
+                daily=Daily.objects.get(period=period, date=today),
                 title=form.cleaned_data.get('title'),
                 expense=form.cleaned_data.get('expense')
             )

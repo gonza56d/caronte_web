@@ -32,3 +32,11 @@
     background-color: #343540;
     color: white;
 }
+
+.form-control:focus{
+    color: #212529;
+    background-color: #fff;
+    border-color: green;
+    outline:0;
+    box-shadow:0 0 0 .25rem rgba(86, 209, 0, .25)
+}

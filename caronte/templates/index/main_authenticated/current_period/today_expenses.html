@@ -42,7 +42,7 @@
                 ">
                     <strong>{% translate 'Remainder' %}: $ {{ daily.today_remainder|floatformat:2 }}</strong>
                 </td>
-                <td class="
+                <td class="text-end
                 {% if period.balance < 0.00 %}
                     {% if request.session.theme.lower == 'dark' %}
                         text-red-strong
