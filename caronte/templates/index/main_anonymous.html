@@ -22,7 +22,7 @@
             <div class="card-body">
                 <h5 class="card-title">{% translate 'Sign up your account now!' %}</h5>
                 <div class="card-text">
-                    <form class="row" action="{% url 'users:signup' %}" method="POST" enctype="application/x-www-form-urlencoded">
+                    <form id="signup_form" class="row" action="{% url 'users:signup' %}" method="POST" enctype="application/x-www-form-urlencoded">
                         {% csrf_token %}
                         {% for field in signup_form %}
                             <div class="col-12 my-1 mx-1">
