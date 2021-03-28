@@ -22,9 +22,15 @@
         </tbody>
         <tfoot>
             <tr>
-                <td>{% translate 'Total spending' %}: <br>${{ daily.today_expense|floatformat:2 }}</td>
-                <td>{% translate 'Remainder' %}: <br>${{ daily.today_remainder|floatformat:2 }}</td>
-                <td>{% translate 'Balance' %}: <br>${{ period.balance|floatformat:2 }}</td>
+                <td>
+                    {% translate 'Total spending' %}: $ {{ daily.today_expense|floatformat:2 }}
+                </td>
+                <td class="{% if period.balance < 0.00 %}red{% elif period.balance > 0.01 %}text-green{% endif %}">
+                    {% translate 'Remainder' %}: $ {{ daily.today_remainder|floatformat:2 }}
+                </td>
+                <td class="{% if period.balance < 0.00 %}red{% elif period.balance > 0.01 %}text-green{% endif %}">
+                    {% translate 'Balance' %}: $ {{ period.balance|floatformat:2 }}
+                </td>
             </tr>
         </tfoot>
     </table>

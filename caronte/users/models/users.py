@@ -72,6 +72,13 @@ class User(BaseModel, AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    class Theme(models.TextChoices):
+        LIGHT = 'l', _('Light')
+        DARK = 'd', _('Dark')
+        AUTO = 'a', _('Auto')
+
+    theme = models.CharField(max_length=1, choices=Theme.choices, default=Theme.AUTO, null=False, blank=True)
+
     objects = UserManager()
 
     def __str__(self):

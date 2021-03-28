@@ -15,7 +15,8 @@
     <title>Caronte | {% block title %}Inicio{% endblock %}</title>
 </head>
 
-<body>
+<body class="theme-{{ request.theme.name.lower }}">
+
     {% include 'navbar.html' %}
 
     {% include 'sidebar.html' %}

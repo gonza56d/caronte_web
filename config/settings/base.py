@@ -55,6 +55,7 @@ DJANGO_MIDDLEWARES = [
 
 PROJECT_MIDDLEWARES = [
     'caronte.users.middlewares.LoginFormMiddleware',
+    'caronte.users.middlewares.SetUpThemeMiddleware',
 ]
 
 MIDDLEWARE = DJANGO_MIDDLEWARES + PROJECT_MIDDLEWARES

@@ -7,3 +7,20 @@
 .alert-error .alert-link {
     color:#6a1a21
 }
+
+.text-green {
+    color: #01ff01;
+}
+
+.text-red {
+    color: #ff0101;
+}
+
+.theme-dark {
+    background-color: black;
+}
+
+.card.theme-dark {
+    background-color: #343540;
+    color: white;
+}
