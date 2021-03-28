@@ -3,7 +3,7 @@
 
 <h5 class="card-title">{% translate "Today's expenses" %}</h5>
 <div class="card-text">
-    <table class="table table-dark table-striped table-hover table-responsive-md">
+    <table class="table {% if request.session.theme.lower == 'dark' %}table-dark{% endif %} table-striped table-hover table-responsive-md">
         <thead>
             <tr>
                 <th scope="col">{% translate 'Time' %}</th>
@@ -14,7 +14,7 @@
         <tbody>
             {% for detail in daily.details %}
             <tr>
-                <th scope="row">{{ detail.created|time }}</th>
+                <td scope="row">{{ detail.created|time }}</td>
                 <td>{{ detail.title }}</td>
                 <td class="text-end px-md-3 px-1">$ {{ detail.expense|floatformat:2 }}</td>
             </tr>
@@ -23,13 +23,41 @@
         <tfoot>
             <tr>
                 <td>
-                    {% translate 'Total spending' %}: $ {{ daily.today_expense|floatformat:2 }}
+                    <strong>{% translate 'Total spending' %}: $ {{ daily.today_expense|floatformat:2 }}</strong>
                 </td>
-                <td class="{% if period.balance < 0.00 %}red{% elif period.balance > 0.01 %}text-green{% endif %}">
-                    {% translate 'Remainder' %}: $ {{ daily.today_remainder|floatformat:2 }}
+                <td class="
+                {% if period.balance < 0.00 %}
+                    {% if request.session.theme.lower == 'dark' %}
+                        text-red-strong
+                    {% else %}
+                        text-red
+                    {% endif %}
+                {% elif period.balance > 0.01 %}
+                    {% if request.session.theme.lower == 'dark' %}
+                        text-green-strong
+                    {% else %}
+                        text-green
+                    {% endif %}
+                {% endif %}
+                ">
+                    <strong>{% translate 'Remainder' %}: $ {{ daily.today_remainder|floatformat:2 }}</strong>
                 </td>
-                <td class="{% if period.balance < 0.00 %}red{% elif period.balance > 0.01 %}text-green{% endif %}">
-                    {% translate 'Balance' %}: $ {{ period.balance|floatformat:2 }}
+                <td class="
+                {% if period.balance < 0.00 %}
+                    {% if request.session.theme.lower == 'dark' %}
+                        text-red-strong
+                    {% else %}
+                        text-red
+                    {% endif %}
+                {% elif period.balance > 0.01 %}
+                    {% if request.session.theme.lower == 'dark' %}
+                        text-green-strong
+                    {% else %}
+                        text-green
+                    {% endif %}
+                {% endif %}
+                ">
+                    <strong>{% translate 'Balance' %}: $ {{ period.balance|floatformat:2 }}</strong>
                 </td>
             </tr>
         </tfoot>

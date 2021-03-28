@@ -9,10 +9,18 @@
 }
 
 .text-green {
-    color: #01ff01;
+    color: #008c00;
 }
 
 .text-red {
+    color: #8c0000;
+}
+
+.text-green-strong {
+    color: #01ff01;
+}
+
+.text-red-strong {
     color: #ff0101;
 }
 

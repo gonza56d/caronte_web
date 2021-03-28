@@ -2,7 +2,7 @@
 
 <h5 class="card-title">{% translate 'Previous daily summaries' %}</h5>
 <div class="card-text">
-    <table class="table table-dark table-striped table-hover">
+    <table class="table {% if request.session.theme.lower == 'dark' %}table-dark{% endif %} table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col">{% translate 'Date' %}</th>
@@ -14,7 +14,7 @@
         <tbody>
             {% for daily in period.dailies %}
             <tr>
-                <th scope="row">{{ daily.date|date }}</th>
+                <td scope="row">{{ daily.date|date }}</td>
                 <td>$ {{ daily.expense|floatformat:2 }}</td>
                 <td>$ {{ daily.remainder|floatformat:2 }}</td>
                 <td>@mdo</td>
