@@ -57,4 +57,4 @@ class Daily(BaseModel):
         return self.period.daily_budget - self.expense
 
     class Meta(BaseModel.Meta):
-        ordering = ['created']
+        ordering = ['date']

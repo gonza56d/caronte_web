@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <h5 class="card-title">{% translate 'Previous daily summaries' %}</h5>
-<div class="card-text">
+<div class="card-text table-responsive">
     <table class="table {% if request.session.theme.lower == 'dark' %}table-dark{% endif %} table-striped table-hover">
         <thead>
             <tr>
@@ -14,10 +14,10 @@
         <tbody>
             {% for daily in period.dailies %}
             <tr>
-                <td scope="row">{{ daily.date|date }}</td>
-                <td>$ {{ daily.expense|floatformat:2 }}</td>
-                <td>$ {{ daily.remainder|floatformat:2 }}</td>
-                <td>$ {{ daily.balance|floatformat:2 }}</td>
+                <td scope="row"><span style="white-space: nowrap;">{{ daily.date|date:"d/m" }}</span></td>
+                <td><span style="white-space: nowrap;">$ {{ daily.expense|floatformat:2 }}</span></td>
+                <td><span style="white-space: nowrap;">$ {{ daily.remainder|floatformat:2 }}</span></td>
+                <td class="text-end"><span style="white-space: nowrap;">$ {{ daily.balance|floatformat:2 }}</span></td>
             </tr>
             {% endfor %}
         </tbody>

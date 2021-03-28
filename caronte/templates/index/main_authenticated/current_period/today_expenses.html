@@ -14,16 +14,16 @@
         <tbody>
             {% for detail in daily.details %}
             <tr>
-                <td scope="row">{{ detail.created|time }}</td>
+                <td scope="row">{{ detail.created|time:"H:i" }}</td>
                 <td>{{ detail.title }}</td>
-                <td class="text-end px-md-3 px-1">$ {{ detail.expense|floatformat:2 }}</td>
+                <td class="text-end px-md-3 px-1"><span style="white-space: nowrap;">$ {{ detail.expense|floatformat:2 }}</span></td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
                 <td>
-                    <strong>{% translate 'Total spending' %}: $ {{ daily.expense|floatformat:2 }}</strong>
+                    <strong>{% translate 'Total' %}:<br><span style="white-space: nowrap;">$ {{ daily.expense|floatformat:2 }}</span></strong>
                 </td>
                 <td class="
                 {% if daily.today_remainder < 0.00 %}
@@ -40,7 +40,7 @@
                     {% endif %}
                 {% endif %}
                 ">
-                    <strong>{% translate 'Remainder' %}: $ {{ daily.today_remainder|floatformat:2 }}</strong>
+                    <strong>{% translate 'Remainder' %}:<br><span style="white-space: nowrap;">$ {{ daily.today_remainder|floatformat:2 }}</span></strong>
                 </td>
                 <td class="text-end
                 {% if period.balance < 0.00 %}
@@ -57,7 +57,7 @@
                     {% endif %}
                 {% endif %}
                 ">
-                    <strong>{% translate 'Balance' %}: $ {{ period.balance|floatformat:2 }}</strong>
+                    <strong>{% translate 'Balance' %}:<br><span style="white-space: nowrap;">$ {{ period.balance|floatformat:2 }}</span></strong>
                 </td>
             </tr>
         </tfoot>

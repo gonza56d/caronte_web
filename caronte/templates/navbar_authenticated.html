@@ -1,9 +1,6 @@
 {% load static %}
 
-<span class="ml-auto" style="color:white;">
-    {{ request.user.email }}
-</span>
-
+{% include 'navbar_theme_button.html' %}
 <a href="{% url 'users:logout' %}" class="btn btn-light">
     <i class="fas fa-door-open"></i>
 </a>
