@@ -42,7 +42,7 @@ class MainView(View):
         if request.user.is_authenticated:
             self.period = Period.objects.current(user=request.user)
             if self.period is not None:
-                self.daily = Daily.objects.from_today(period=self.period)
+                self.period, self.daily = Daily.objects.from_today(period=self.period)
         return render(request, 'index/main.html', {
             'signup_form': SignupForm(),
             'period_form': PeriodForm(),

@@ -6,7 +6,6 @@ from typing import Tuple
 from django.db import models
 from django.utils import timezone
 # Project
-from caronte.dailies.models import Daily
 from caronte.details.models import Detail
 from caronte.periods import services as period_services
 from caronte.periods.models import Period
@@ -16,7 +15,7 @@ from caronte.utils.models import BaseModel
 class DailyManager(models.Manager):
 
     @staticmethod
-    def from_today(period: Period) -> Tuple[Period, Daily]:
+    def from_today(period: Period):
         """
         Look for current Daily or create a new if it does not exists.
         Refresh current Period status if a new Daily has been created.
@@ -30,8 +29,7 @@ class DailyManager(models.Manager):
             'expense': 0,
             'remainder': period.daily_budget
         })
-        daily = get_or_create[0]
-        created = get_or_create[1]
+        daily, created = get_or_create[0], get_or_create[1]
         daily.details = Detail.objects.filter(daily=daily)
         if created:
             period = period_services.refresh(period)
