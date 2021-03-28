@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-{% if request.theme == 'l' %}sun{% else %}moon{% endif %}"></i>
+        </button>
+    <ul class="dropdown-menu {% if request.theme == 'd' %}dropdown-menu-dark{% endif %} dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="{% url 'users:set_theme' 'a' %}"><i class="fas fa-sync-alt"></i> {% translate 'Auto' %}</a></li>
+        <li><a class="dropdown-item" href="{% url 'users:set_theme' 'l' %}"><i class="fas fa-sun"></i> {% translate 'Light' %}</a></li>
+        <li><a class="dropdown-item" href="{% url 'users:set_theme' 'd' %}"><i class="fas fa-moon"></i> {% translate 'Dark' %}</a></li>
+    </ul>
+</div>
