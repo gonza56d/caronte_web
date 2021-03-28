@@ -55,3 +55,6 @@ class Daily(BaseModel):
     @property
     def today_remainder(self):
         return self.period.daily_budget - self.expense
+
+    class Meta(BaseModel.Meta):
+        ordering = ['created']

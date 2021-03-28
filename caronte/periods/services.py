@@ -31,14 +31,17 @@ def get_dailies_creating_missings(period: Period):
     expected_dailies_quantity = days_until_today(start_date=period.date)
     missing_dailies = expected_dailies_quantity - dailies_quantity
 
-    for n in range(missing_dailies):
+    i = 0  # 0 to n count to multiply created daily balance
+    for n in reversed(range(missing_dailies)):
+        i += 1
         daily_date = dailies.last().date - timedelta(days=n+1)
         Daily.objects.create(
             period=period,
             notes=_('Inactive day'),
             date=daily_date,
             expense=0,
-            remainder=period.daily_budget
+            remainder=period.daily_budget,
+            balance=period.balance + period.daily_budget * i
         )
     if missing_dailies > 0:
         dailies = Daily.objects.filter(period=period)
