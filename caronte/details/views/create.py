@@ -3,14 +3,11 @@
 # Django
 from django.contrib import messages
 from django.shortcuts import redirect
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import View
 # Project
-from caronte.dailies.models import Daily
 from caronte.details import services
 from caronte.details.forms import DetailForm
-from caronte.periods.models import Period
 from caronte.utils.genericfunctions import form_errors_into_string
 
 
