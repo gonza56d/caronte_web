@@ -1,10 +1,13 @@
 """Detail tests."""
 
-# Django
-from django.test import TestCase
+# Project
+from caronte.utils.test import AuthenticatedTestCase
 
 
-class DetailsTestCase(TestCase):
+class DetailsTestCase(AuthenticatedTestCase):
 
-    pass
+    def setUp(self) -> None:
+        super().setUp()
 
+    def test_dummy(self):
+        pass

@@ -43,5 +43,6 @@ class SignupForm(forms.ModelForm):
 
         self.fields['re_password'] = IconPasswordField(
             placeholder=_('Password again'),
-            icon='fas fa-key'
+            icon='fas fa-key',
+            required=False
         )

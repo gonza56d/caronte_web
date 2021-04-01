@@ -1,8 +1,11 @@
 """Project generic utility functions."""
 
 # Python
+import pdb
 from datetime import datetime
 # Django
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Model
 from django.forms.utils import ErrorDict
 from django.utils import timezone
 
@@ -22,3 +25,14 @@ def days_until_today(start_date: datetime) -> int:
 
     now = timezone.now().date()
     return abs((now - start_date).days)
+
+
+def get_or_none(model: Model, **kwargs) -> object or None:
+    """Look for a single object instance of the Model passed as argument.
+    Return object instance if found, handle ObjectDoesNotExist exception and return None if no object was found.
+    MultipleObjectsReturned is not handled, exception will be thrown if occurs."""
+    try:
+        pdb.set_trace()
+        return model.objects.get(**kwargs)
+    except ObjectDoesNotExist:
+        return None
