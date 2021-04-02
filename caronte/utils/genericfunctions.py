@@ -1,7 +1,6 @@
 """Project generic utility functions."""
 
 # Python
-import pdb
 from datetime import datetime
 # Django
 from django.core.exceptions import ObjectDoesNotExist
@@ -32,7 +31,6 @@ def get_or_none(model: Model, **kwargs) -> object or None:
     Return object instance if found, handle ObjectDoesNotExist exception and return None if no object was found.
     MultipleObjectsReturned is not handled, exception will be thrown if occurs."""
     try:
-        pdb.set_trace()
         return model.objects.get(**kwargs)
     except ObjectDoesNotExist:
         return None

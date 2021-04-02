@@ -1,7 +1,5 @@
 """Users signup views."""
 
-# Python
-import pdb
 # Django
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -19,7 +17,6 @@ class SignupView(View):
     form_class = SignupForm
 
     def post(self, request, *args, **kwargs):
-        pdb.set_trace()
         form = self.form_class(data=request.POST)
         if form.is_valid():
             user = services.signup(
