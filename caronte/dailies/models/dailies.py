@@ -21,17 +21,22 @@ class DailyManager(models.Manager):
         :param period: User's Period to search today's Daily.
         :return: Today's Daily with its current Details list.
         """
-        today = timezone.now().date()
-        get_or_create = Daily.objects.get_or_create(period=period, date=today, defaults={
-            'period': period,
-            'expense': 0,
-            'remainder': period.daily_budget
-        })
-        daily, created = get_or_create[0], get_or_create[1]
-        daily.details = Detail.objects.filter(daily=daily)
-        period.dailies = Daily.objects.filter(period=period)
-        if created:
-            period = period_services.refresh(period)
+
+        daily = None
+
+        if period is not None:
+            today = timezone.now().date()
+            get_or_create = Daily.objects.get_or_create(period=period, date=today, defaults={
+                'period': period,
+                'expense': 0,
+                'remainder': period.daily_budget
+            })
+            daily, created = get_or_create[0], get_or_create[1]
+            daily.details = Detail.objects.filter(daily=daily)
+            period.dailies = Daily.objects.filter(period=period)
+            if created:
+                period = period_services.refresh(period)
+
         return period, daily
 
 

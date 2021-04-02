@@ -6,10 +6,9 @@ import datetime
 from django.shortcuts import render
 from django.views import View
 # Project
-from caronte.dailies.models import Daily
+import services
 from caronte.details.forms import DetailForm
 from caronte.periods.forms import PeriodForm
-from caronte.periods.models import Period
 from caronte.users.forms import SignupForm
 from caronte.utils.constants.strings import CARONTE_INDEX_DESCRIPTION
 
@@ -26,7 +25,6 @@ class MainView(View):
 
     period = None
     daily = None
-    details = None
 
     def get(self, request):
         """
@@ -38,10 +36,8 @@ class MainView(View):
         @:return render index/main.html with the proper info and template.
         """
 
-        if request.user.is_authenticated:
-            self.period = Period.objects.current(user=request.user)
-            if self.period is not None:
-                self.period, self.daily = Daily.objects.from_today(period=self.period)
+        self.period, self.daily = services.handle_index_view(request)
+
         return render(request, 'index/main.html', {
             'signup_form': SignupForm(),
             'period_form': PeriodForm(),
