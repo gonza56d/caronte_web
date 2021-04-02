@@ -12,13 +12,13 @@
             </tr>
         </thead>
         <tbody>
-            {% for daily in period.dailies %}
-            <tr>
-                <td scope="row"><span style="white-space: nowrap;">{{ daily.date|date:"d/m" }}</span></td>
-                <td><span style="white-space: nowrap;">$ {{ daily.expense|floatformat:2 }}</span></td>
-                <td><span style="white-space: nowrap;">$ {{ daily.remainder|floatformat:2 }}</span></td>
-                <td class="text-end"><span style="white-space: nowrap;">$ {{ daily.balance|floatformat:2 }}</span></td>
-            </tr>
+            {% for daily in period.previous_dailies %}
+                <tr>
+                    <td scope="row"><span style="white-space: nowrap;">{{ daily.date|date:"d/m" }}</span></td>
+                    <td><span style="white-space: nowrap;">$ {{ daily.expense|floatformat:2 }}</span></td>
+                    <td><span style="white-space: nowrap;">$ {{ daily.remainder|floatformat:2 }}</span></td>
+                    <td class="text-end"><span style="white-space: nowrap;">$ {{ daily.balance|floatformat:2 }}</span></td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

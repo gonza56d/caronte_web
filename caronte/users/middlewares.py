@@ -1,5 +1,3 @@
-# Python
-from datetime import datetime
 # Django
 from django.utils import timezone
 # Project

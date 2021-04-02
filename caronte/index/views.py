@@ -8,7 +8,6 @@ from django.views import View
 # Project
 from caronte.dailies.models import Daily
 from caronte.details.forms import DetailForm
-from caronte.details.models import Detail
 from caronte.periods.forms import PeriodForm
 from caronte.periods.models import Period
 from caronte.users.forms import SignupForm
