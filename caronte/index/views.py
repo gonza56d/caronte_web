@@ -6,8 +6,8 @@ import datetime
 from django.shortcuts import render
 from django.views import View
 # Project
-import services
 from caronte.details.forms import DetailForm
+from caronte.index import services
 from caronte.periods.forms import PeriodForm
 from caronte.users.forms import SignupForm
 from caronte.utils.constants.strings import CARONTE_INDEX_DESCRIPTION
