@@ -1,7 +1,5 @@
 """Dailies models module."""
 
-# Python
-from typing import Tuple
 # Django
 from django.db import models
 from django.utils import timezone
@@ -31,6 +29,7 @@ class DailyManager(models.Manager):
         })
         daily, created = get_or_create[0], get_or_create[1]
         daily.details = Detail.objects.filter(daily=daily)
+        period.dailies = Daily.objects.filter(period=period)
         if created:
             period = period_services.refresh(period)
         return period, daily

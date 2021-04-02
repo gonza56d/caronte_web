@@ -1,25 +1,15 @@
 """Users application tests."""
 
 # Django
-from django.test import TestCase, Client
 from django.shortcuts import reverse
 # Project
 from caronte.users.models import User
 from caronte.utils.genericfunctions import get_or_none
+from caronte.utils.tests import BaseTest, TestUtils
 
 
-class AuthenticationTestCase(TestCase):
-    """Test case to inherit from which implements signup and login test cases, and provide a user attribute."""
-
-    class DummyUser:
-        username = 'testuser'
-        email = 'test@user.com'
-        password = 'testuser'
-        first_name = 'Test'
-        last_name = 'User'
-
-    def setUp(self) -> None:
-        self.c = Client()
+class AuthenticationTestCase(BaseTest, TestUtils):
+    """Signup and login test cases."""
 
     def test_authentication(self):
         response = self.c.post(

@@ -16,7 +16,6 @@ class PeriodManager(models.Manager):
         try:
             from caronte.dailies.models import Daily
             period = self.get(user=user, date__lte=now, finish_date__gte=now, **kwargs)
-            period.dailies = Daily.objects.filter(period=period, date__lt=now)
             return period
         except Period.DoesNotExist:
             return None
@@ -36,9 +35,16 @@ class Period(BaseModel):
 
     balance = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0)
 
+    dailies = []
+
     @property
     def daily_budget(self):
         start_date = datetime.strptime(str(self.date), "%Y-%m-%d")
         end_date = datetime.strptime(str(self.finish_date), "%Y-%m-%d")
         days = abs((end_date - start_date).days)
         return self.budget / days
+
+    @property
+    def previous_dailies(self):
+        ret = [daily for daily in self.dailies if daily.date < datetime.date(timezone.now())]
+        return ret

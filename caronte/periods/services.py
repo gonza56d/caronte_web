@@ -59,5 +59,6 @@ def refresh(period: Period) -> Period:
     for daily in dailies:
         balance += period.daily_budget - daily.expense
     period.balance = balance
+    period.dailies = dailies
     period.save()
     return period
