@@ -30,7 +30,7 @@ class CreateDetailView(View):
                 expense=form.cleaned_data.get('expense')
             )
             if detail:
-                messages.success(request, _('Detail added'))
+                messages.success(request, _('Expense added'))
             else:
                 messages.error(request, _('Unkown error occurred'))
         return redirect('index:main')
