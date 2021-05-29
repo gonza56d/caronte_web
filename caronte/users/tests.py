@@ -14,7 +14,7 @@ class UsersTest(TestCase):
     """
 
     class DummyUser:
-        """Dummy user used for tests purposes.
+        """Dummy user for tests purposes.
         """
         username = 'illidan'
         email = 'illidan@wc.com'
